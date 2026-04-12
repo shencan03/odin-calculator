@@ -28,18 +28,42 @@ const operate = (num1, num2, operator) => {
 }
 
 const calcDisplay = document.querySelector(".calc-display")
+const calcButtons= document.querySelector(".calc-buttons")
 
-const calcContainer = document.querySelector(".calc-buttons")
 for (let i = 0; i < 10; i++){
-    const num = document.createElement("button")
-    num.id = `num-${i}`
-    num.textContent = i
+    const numButton = document.createElement("button")
 
-    num.addEventListener("click", () => {
-        let num = document.createElement("div")    
+    numButton.id = `button-${i}`
+    numButton.textContent = i
+
+    numButton.addEventListener("click", () => {
+        let num = document.createElement("div")
+
+        num.classList.add("display-num")
+        num.id = `num-${i}`
         num.textContent = i
         calcDisplay.appendChild(num)
     })
 
-    calcContainer.appendChild(num)
+    calcButtons.appendChild(numButton)
+}
+
+for ( const [key, value] of Object.entries({"sum": "+", "subtract": "-", "multiply": "*", "divide": "/"})) {
+    const op = document.createElement("button")
+
+    op.classList.add("op")
+    op.id = key
+    op.textContent = value
+
+    op.addEventListener("click", () => {
+        let opDiv = document.createElement("div")
+
+        opDiv.classList.add("display-op")
+        opDiv.id = `op-${key}`
+        opDiv.textContent = value
+
+        calcDisplay.appendChild(opDiv)
+    })    
+
+    calcButtons.appendChild(op)
 }
