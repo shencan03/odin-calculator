@@ -26,3 +26,20 @@ const operate = (num1, num2, operator) => {
         break
     }
 }
+
+const calcDisplay = document.querySelector(".calc-display")
+
+const calcContainer = document.querySelector(".calc-buttons")
+for (let i = 0; i < 10; i++){
+    const num = document.createElement("button")
+    num.id = `num-${i}`
+    num.textContent = i
+
+    num.addEventListener("click", () => {
+        let num = document.createElement("div")    
+        num.textContent = i
+        calcDisplay.appendChild(num)
+    })
+
+    calcContainer.appendChild(num)
+}
